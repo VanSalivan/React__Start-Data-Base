@@ -1,5 +1,5 @@
 import React from 'react';
-import './random-planet';
+import './random-planet.scss';
 
 const RandomPlanet = () => {
     return (

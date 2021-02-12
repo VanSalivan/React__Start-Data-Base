@@ -1,5 +1,5 @@
 import React from 'react';
-import './planet-details';
+import './planet-details.scss';
 
 const PlanetDetails = () => {
     return (

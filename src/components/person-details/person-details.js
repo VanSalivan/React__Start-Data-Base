@@ -1,5 +1,5 @@
 import React from 'react';
-import './person-details';
+import './person-details.scss';
 
 const PersonDetails = () => {
     return (

@@ -11,10 +11,15 @@
 
 // Функция для получения обьекта с сервера
 const getResourse = async (url) => {
-    const res = await fetch(url); // получаем ответ - статус, url и т.д
-    const body = await res.json(); // парсим полученный ответ в обьект
+    const response = await fetch(url); // получаем ответ - статус, url и т.д
+    if (!response.ok) { // Отображаем ошибку запроса
+        throw new Error(`Не удалось выполнить запрос по адресу ${url}, ошибка № ${response.status}`)
+    }
+    const body = await response.json(); // парсим полученный ответ в обьект
     return body;
 };
 
-getResourse('https://swapi.dev/api/people/1/')
+getResourse('https://swapi.dev/api/people/1/2222')
     .then((resultBody) => console.log(resultBody));
+
+//===========================  ES6  =================================

@@ -13,14 +13,20 @@ export default class App extends Component {
 
     render() {
         return (
-            <div className="">
+            <div className="section-outer">
                 <Header />
-                <ItemList />
-                <PersonDetails />
                 <PlanetDetails />
-                <RandomPlanet />
-                <StarshipDetails />
+
+                <div className="row mb2">
+                    <div className="col-md-6">
+                        <ItemList />
+                    </div>
+                    <div className="col-md-6">
+                        <PersonDetails />
+                    </div>
+                </div>
             </div>
         );
     }
+
 }

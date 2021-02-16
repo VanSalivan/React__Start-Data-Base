@@ -15,7 +15,7 @@ export default class App extends Component {
         return (
             <div className="section-outer">
                 <Header />
-                <PlanetDetails />
+                <RandomPlanet />
 
                 <div className="row mb2">
                     <div className="col-md-6">
@@ -28,5 +28,4 @@ export default class App extends Component {
             </div>
         );
     }
-
 }

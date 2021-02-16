@@ -3,7 +3,26 @@ import './random-planet.scss';
 
 const RandomPlanet = () => {
     return (
-        <div className="random-planet">random-planet</div>
+        <div className="random-planet card">
+            <img className="random-planet-image" src={`https://starwars-visualguide.com/assets/img/planets/8.jpg`} alt="planet" />
+            <div className="card-body">
+                <h4>Planet name</h4>
+                <ul className="list-group list-group-flush">
+                    <li className="list-group-item">
+                        <span className="term">Population</span>
+                        <span>population</span>
+                    </li>
+                    <li className="list-group-item">
+                        <span className="term">Rotation Period</span>
+                        <span>rotationPeriod</span>
+                    </li>
+                    <li className="list-group-item">
+                        <span className="term">Diameter</span>
+                        <span>diameter</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
     );
 };
 

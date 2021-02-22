@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import SwapiService from "../../services/swapi-service";
+import Spiner from '../spiner/spiner';
+
 import './random-planet.scss';
+
 
 export default class RandomPlanet extends Component {
     swapi = new SwapiService();
@@ -25,11 +28,12 @@ export default class RandomPlanet extends Component {
     };
 
     render() {
+
         return (
             <div className="random-planet card" >
                 <img className="random-planet-image" src={`https://starwars-visualguide.com/assets/img/planets/${this.state.planet.id}.jpg`} alt="planet" />
                 <div className="card-body">
-                    <h4>{this.state.planet.planeName}</h4>
+                    <h4>{this.state.planet.planetName}</h4>
                     <ul className="list-group list-group-flush">
                         <li className="list-group-item">
                             <span className="term">Population</span>

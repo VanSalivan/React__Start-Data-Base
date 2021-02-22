@@ -2,12 +2,14 @@
 export default class SwapiService {
     getResourse = async (url) => { // метод получения/обработки результата
         const response = await fetch(url); // получаем ответ - статус, url и т.д
+        // console.log(response);
 
         if (!response.ok) { // Отображаем ошибку запроса
             throw new Error(`Не удалось выполнить запрос по адресу ${url}, ошибка № ${response.status}`)
         }
 
         const body = await response.json(); // парсим полученный ответ в обьект
+        // console.log(body);
         return body;
     };
 
@@ -24,7 +26,7 @@ export default class SwapiService {
     _transformPlanet(planet) {
         return {
             id: this._extractId(planet),
-            planerName: planet.name,
+            planetName: planet.name,
             population: planet.population,
             rotationPeriod: planet.rotation_period,
             diameter: planet.diameter

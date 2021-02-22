@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SwapiService from "../../services/swapi-service";
 import Spiner from '../spiner/spiner';
+import ErrorIndicator from "../error-indicator/error-indicator";
 
 import './random-planet.scss';
 
@@ -8,13 +9,21 @@ import './random-planet.scss';
 export default class RandomPlanet extends Component {
     swapi = new SwapiService();
     state = {
-        planet: {},
-        loading: true, // флаг показа спиннера : по умолчанию показывать - true
+        planet: {}, // поле с данными обьекта получаемого с сервера
+        loading: true, // флаг показа спиннера
+        error: false // флаг ошибки
     };
 
     constructor() { // в момент создания компонента отправляем запрос на сервер
         super();
         this.updatePlanet(); // получаемый ответ отображаем на странице через смену state
+    };
+
+    onError = (err) => {
+        this.setState({
+            error: true,
+            loading: false, // загрузка закончилась если мы получили ошибку
+        })
     };
 
     onPlanetLoaded = (planet) => { // стрелка для работы с значением this
@@ -28,16 +37,22 @@ export default class RandomPlanet extends Component {
         // Генерация случайной планеты через числа
         const itemId = Math.floor(Math.random() * 17) + 2;
         this.swapi.getPlanet(itemId) // получаем планету по передаваемому параметру ID
-            .then(this.onPlanetLoaded); // дожидаемся ответа и устанавливаем новый стейт из параметров result от сервера
+            .then(this.onPlanetLoaded) // дожидаемся ответа и устанавливаем новый стейт из параметров result от сервера
+            .catch(this.onError);
     };
 
-    render() {
+    render() {  // null В JSX разметке игнорируется
+        // у нас есть данные только тогда когда(нет не загрузки || не ошибки );
+        const hasData = !(this.state.loading || this.state.error);
         // если мы загружаемася(true по умолчанию) : null(ничего)
         const spiner = this.state.loading ? <Spiner /> : null;
         // если не загружаемся/значит данные пришли показывает компонент с данными : null(ничего) - не отображает ничего
-        const content = !this.state.loading ? <PlanetViev planet={this.state.planet} /> : null;
-        return ( // null В JSX разметке игнорируется
+        const content = hasData ? <PlanetViev planet={this.state.planet} /> : null;
+        // если есть ошибка то показываем ее
+        const errorMessage = this.state.error ? <ErrorIndicator /> : null;
+        return (
             <div className="random-planet card" >
+                {errorMessage}
                 {spiner}
                 {content}
             </div>

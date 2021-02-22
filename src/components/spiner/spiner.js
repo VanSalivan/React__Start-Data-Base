@@ -5,8 +5,8 @@ import "./spiner.scss";
 
 const Spiner = () => {
     return (
-        <div class="spinner-wrap">
-            <div class="spinner-body">
+        <div className="spinner-wrap">
+            <div className="spinner-body">
                 <div></div>
                 <div></div>
                 <div><div></div></div>

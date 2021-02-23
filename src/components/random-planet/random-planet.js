@@ -14,10 +14,11 @@ export default class RandomPlanet extends Component {
         error: false // флаг ошибки
     };
 
-    constructor() { // в момент создания компонента отправляем запрос на сервер
-        super();
+    // отправляет запросы/срабатывает после добавления элементов в DOM
+    componentDidMount() {// в момент создания компонента отправляем запрос на сервер
         this.updatePlanet(); // получаемый ответ отображаем на странице через смену state
-    };
+        setInterval(this.updatePlanet, 10000);
+    }
 
     onError = (err) => {
         this.setState({
@@ -33,7 +34,8 @@ export default class RandomPlanet extends Component {
         })
     };
 
-    updatePlanet() {
+    updatePlanet = () => {
+        console.log("обновление")
         // Генерация случайной планеты через числа
         const itemId = Math.floor(Math.random() * 17) + 2;
         this.swapi.getPlanet(itemId) // получаем планету по передаваемому параметру ID

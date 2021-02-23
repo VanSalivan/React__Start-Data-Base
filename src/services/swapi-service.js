@@ -23,7 +23,7 @@ export default class SwapiService {
 
     //* + Изменяем правила наименования данных с сервера на локальные
     //* + Вместо всех полей выбираем только те что нам нужны
-    _transformPlanet(planet) {
+    _transformPlanet = (planet) => {
         return {
             id: this._extractId(planet),
             planetName: planet.name,
@@ -33,7 +33,7 @@ export default class SwapiService {
         };
     };
 
-    _transformPerson(person) {
+    _transformPerson = (person) => {
         return {
             id: this._extractId(person),
             birthYear: person.birth_year,
@@ -47,7 +47,7 @@ export default class SwapiService {
         };
     }
 
-    _transformStarShip(starShip) {
+    _transformStarShip = (starShip) => {
         return {
             id: this._extractId(starShip),
             model: starShip.model,

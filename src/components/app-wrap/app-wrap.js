@@ -11,7 +11,18 @@ import './app-wrap.scss';
 
 export default class App extends Component {
 
+    state = {
+        selectedPerson: null,
+    };
+
+    onPersonSelecter = (id) => {
+        this.setState({
+            selectedPerson: id,
+        });
+    };
+
     render() {
+        console.log(this.state.selectedPerson)
         return (
             <div className="section-outer">
                 <Header />
@@ -19,10 +30,10 @@ export default class App extends Component {
 
                 <div className="row mb2">
                     <div className="col-md-6">
-                        <ItemList />
+                        <ItemList onItemSelected={this.onPersonSelecter} />
                     </div>
                     <div className="col-md-6">
-                        <PersonDetails />
+                        <PersonDetails personId={this.state.selectedPerson} />
                     </div>
                 </div>
             </div>

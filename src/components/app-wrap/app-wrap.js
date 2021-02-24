@@ -15,14 +15,13 @@ export default class App extends Component {
         selectedPerson: null,
     };
 
-    onPersonSelecter = (id) => {
+    onPersonSelected = (id) => {
         this.setState({
             selectedPerson: id,
         });
     };
 
     render() {
-        console.log(this.state.selectedPerson)
         return (
             <div className="section-outer">
                 <Header />
@@ -30,7 +29,7 @@ export default class App extends Component {
 
                 <div className="row mb2">
                     <div className="col-md-6">
-                        <ItemList onItemSelected={this.onPersonSelecter} />
+                        <ItemList onItemSelected={this.onPersonSelected} />
                     </div>
                     <div className="col-md-6">
                         <PersonDetails personId={this.state.selectedPerson} />

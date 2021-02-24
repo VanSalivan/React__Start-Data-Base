@@ -35,7 +35,7 @@ export default class RandomPlanet extends Component {
     };
 
     updatePlanet = () => {
-        console.log("обновление")
+        // console.log("обновление")
         // Генерация случайной планеты через числа
         const itemId = Math.floor(Math.random() * 17) + 2;
         this.swapi.getPlanet(itemId) // получаем планету по передаваемому параметру ID

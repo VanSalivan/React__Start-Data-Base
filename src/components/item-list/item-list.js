@@ -6,29 +6,35 @@ import './item-list.scss';
 
 
 export default class ItemList extends Component {
-    swapi = new SwapiService();
+    swapiService = new SwapiService();
     state = {
         peopleList: [],
     };
 
     componentDidMount() {
-        this.swapi.getAllPerson()
+        this.swapiService
+            .getAllPerson()
             .then((peopleList) => {
-                this.setState({ peopleList });
+                this.setState({
+                    peopleList: peopleList
+                });
             });
     };
 
     renderItems(arr) {
-        // console.log(this.state.peopleList[0])
-        return arr.map(({ id, name }) => {
+        return arr.map(person => {
             return (
-                <li className="list-group-item" key={id} onClick={() => this.props.onItemSelected}>{name}</li>
+                <li className="list-group-item"
+                    key={person.id}
+                    onClick={() => this.props.onItemSelected(person.id)}>
+                    {person.name}
+                </li>
             );
         });
     };
 
     render() {
-        const { peopleList } = this.state
+        const { peopleList } = this.state // Деструктурируем в переменную
         const itemsLi = this.renderItems(peopleList); // передаем кастомной функции отображения наш массив из стейта
 
         if (!peopleList[0]) {

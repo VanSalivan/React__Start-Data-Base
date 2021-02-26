@@ -26,7 +26,7 @@ export default class SwapiService {
     _transformPlanet = (planet) => {
         return {
             id: this._extractId(planet),
-            planetName: planet.name,
+            name: planet.name,
             population: planet.population,
             rotationPeriod: planet.rotation_period,
             diameter: planet.diameter
@@ -63,36 +63,36 @@ export default class SwapiService {
 
     // ================  Запрос персонажей  ================
 
-    async getAllPerson() { // Получаем ответ от сервера
+    getAllPerson = async () => { // Получаем ответ от сервера
         const result = await this.getResourse("https://swapi.dev/api/people/")
         return result.results.map(this._transformPerson); // получаем массив обьектов и возвращаем на его основе массив с изменеными данными
     }
 
-    async getPerson(id) {
+    getPerson = async (id) => {
         const result = await this.getResourse(`https://swapi.dev/api/people/${id}`)
         return this._transformPerson(result) // получаем обьект c измененными даннымиы
     }
 
     // ================  Запрос планет  ================
 
-    async getAllPlanets() { // Получаем ответ от сервера
+    getAllPlanets = async () => { // Получаем ответ от сервера
         const result = await this.getResourse("https://swapi.dev/api/planets/")
         return result.results.map(this._transformPlanet);
     }
 
-    async getPlanet(id) {
+    getPlanet = async (id) => {
         const result = await this.getResourse(`https://swapi.dev/api/planets/${id}`)
         return this._transformPlanet(result)
     }
 
     // ================  Запрос кораблей  ================
 
-    async getAllStarships() { // Получаем ответ от сервера
+    getAllStarships = async () => { // Получаем ответ от сервера
         const result = await this.getResourse("https://swapi.dev/api/starships/")
         return result.results.map(this._transformStarShip);
     }
 
-    async getStarships(id) {
+    getStarships = async (id) => {
         const result = await this.getResourse(`https://swapi.dev/api/starships/${id}`)
         return this._transformPerson(result);
     }

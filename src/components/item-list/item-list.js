@@ -1,22 +1,19 @@
 import React, { Component } from 'react';
-import SwapiService from "../../services/swapi-service";
 import Spiner from '../spiner/spiner';
 
 import './item-list.scss';
 
 
 export default class ItemList extends Component {
-    swapiService = new SwapiService();
     state = {
-        peopleList: [],
+        itemList: [],
     };
 
     componentDidMount() {
-        this.swapiService
-            .getAllPerson()
-            .then((peopleList) => {
+        this.props.getData() // Вызываем переданные с сервера данные
+            .then((itemList) => {
                 this.setState({
-                    peopleList: peopleList
+                    itemList: itemList
                 });
             });
     };
@@ -34,10 +31,11 @@ export default class ItemList extends Component {
     };
 
     render() {
-        const { peopleList } = this.state // Деструктурируем в переменную
-        const itemsLi = this.renderItems(peopleList); // передаем кастомной функции отображения наш массив из стейта
 
-        if (!peopleList[0]) {
+        const { itemList } = this.state // Деструктурируем в переменную
+        const itemsLi = this.renderItems(itemList); // передаем кастомной функции отображения наш массив из стейта
+
+        if (!itemList[0]) {
             return <Spiner />
         };
 

@@ -3,7 +3,7 @@ import Spiner from '../spiner/spiner';
 
 import './item-list.scss';
 
-
+// Компонент "Список" - отображение/логика списка 
 export default class ItemList extends Component {
     state = {
         itemList: [],
@@ -20,8 +20,8 @@ export default class ItemList extends Component {
 
     renderItems(arr) {
         return arr.map(person => {
-            const label = this.props.renderItem(person);
-            
+            const label = this.props.children(person); // передача через тело элемента
+
             return (
                 <li className="list-group-item"
                     key={person.id}

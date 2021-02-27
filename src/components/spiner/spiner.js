@@ -2,7 +2,7 @@ import React from "react";
 
 import "./spiner.scss";
 
-
+// Визуальное отображения спиннер для загрузок
 const Spiner = () => {
     return (
         <div className="spinner-wrap">

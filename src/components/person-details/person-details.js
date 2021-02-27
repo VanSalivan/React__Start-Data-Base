@@ -3,6 +3,7 @@ import SwapiService from '../../services/swapi-service';
 
 import './person-details.scss';
 
+// Компонент отображает данные персонажа с сервера  
 export default class PersonDetails extends Component {
     SwapiService = new SwapiService();
 

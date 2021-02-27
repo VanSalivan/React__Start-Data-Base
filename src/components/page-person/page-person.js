@@ -1,48 +1,41 @@
 import React, { Component } from 'react';
+
+import SwapiService from "../../services/swapi-service";
+import ErrorBoundary from '../error-boundary';
+
+import Row from '../row';
 import ItemList from '../item-list';
 import PersonDetails from '../person-details';
-import Row from '../row';
-import SwapiService from "../../services/swapi-service";
 
 import './page-person.scss';
 
+// Компонент "Обертка страницы персоажей" 
 export default class PagePerson extends Component {
     swapiService = new SwapiService();
     state = {
-        selectedPerson: null,
-        hasError: false,
+        selectedPerson: null, // изначально выбранный персонаж из списка
     };
 
-    onPersonSelected = (id) => {
+    onPersonSelected = (id) => { // Функция смены выбранного персонажа
         this.setState({
             selectedPerson: id,
-        });
-    };
-
-    // функция ловит ошибку и останавливает ее всплытие
-    componentDidCatch() { // заменяем флаг ошибки при срабатывании
-        this.setState({
-            hasError: true
         });
     };
 
     render() {
         // Элементы разметки
         const itemList = (
-            <ItemList
-                onItemSelected={this.onPersonSelected}
-                getData={this.swapiService.getAllPerson}
-                renderItem={(item) => `${item.name} ( ${item.gender} - ${item.birthYear} )`}
-            />)
-        
+            <ItemList getData={this.swapiService.getAllPerson} onItemSelected={this.onPersonSelected}>
+                {(item) => `${item.name} ( ${item.birthYear} )`}
+            </ItemList>
+        );
+
         const personDetails = <PersonDetails personId={this.state.selectedPerson} />
 
-        if (this.state.hasError) {
-            return <span>Ошибочка, не волнуйтесь, все исправим, скоро...</span>
-        }
-
         return (
-            <Row leftElement={itemList} rightElement={personDetails} />
+            <ErrorBoundary>
+                <Row leftElement={itemList} rightElement={personDetails} />
+            </ErrorBoundary>
         );
     };
 };

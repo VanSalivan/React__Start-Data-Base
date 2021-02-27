@@ -9,6 +9,7 @@ import SwapiService from "../../services/swapi-service";
 
 import './app-wrap.scss';
 
+// Компонент "Обертка приложения" 
 export default class App extends Component {
     swapiService = new SwapiService();
     state = {

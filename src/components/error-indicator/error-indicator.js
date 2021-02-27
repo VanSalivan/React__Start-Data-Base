@@ -2,6 +2,7 @@ import React from "react";
 
 import "./error-indicator.scss";
 
+// Компонент "Индикатор ошибки" - визуализация ошибки
 const ErrorIndicator = () => {
     return (
         <div className="error-indicator">

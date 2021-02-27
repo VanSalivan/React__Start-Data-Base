@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 
 import Header from '../header';
-import RandomPlanet from '../random-planet';
-import PagePerson from '../page-person';
 import Row from '../row';
-import ItemDetails from '../item-details/item-details';
+import ItemDetails, { Record } from '../item-details/item-details';
 
 import SwapiService from "../../services/swapi-service";
 
@@ -17,11 +15,17 @@ export default class App extends Component {
 
     render() {
 
-        const personDetails = <ItemDetails
-            getData={this.swapiService.getPerson}
-            getImageUrl={this.swapiService.getPersonImage}
-            itemId={11}
-        />
+        const personDetails = (
+            <ItemDetails
+                getData={this.swapiService.getPerson}
+                getImageUrl={this.swapiService.getPersonImage}
+                itemId={11}>
+
+                <Record field="gender" label="Gender" />
+                <Record field="eyeColor" label="Eye Color" />
+
+            </ItemDetails>
+        );
 
         const starshipDetails = <ItemDetails
             getData={this.swapiService.getStarships}
@@ -33,8 +37,7 @@ export default class App extends Component {
             <div className="section-outer">
                 <Header />
                 <Row leftElement={personDetails} rightElement={starshipDetails} />
-                {/* <RandomPlanet /> */}
-                {/* <PagePerson /> */}
+
             </div>
         );
     }

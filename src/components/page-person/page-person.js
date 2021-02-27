@@ -5,7 +5,7 @@ import ErrorBoundary from '../error-boundary';
 
 import Row from '../row';
 import ItemList from '../item-list';
-import PersonDetails from '../person-details';
+import ItemDetails from '../item-details';
 
 import './page-person.scss';
 
@@ -13,28 +13,28 @@ import './page-person.scss';
 export default class PagePerson extends Component {
     swapiService = new SwapiService();
     state = {
-        selectedPerson: null, // изначально выбранный персонаж из списка
+        selectedItem: 11, // изначально выбранный персонаж из списка
     };
 
-    onPersonSelected = (id) => { // Функция смены выбранного персонажа
+    onItemSelected = (id) => { // Функция смены выбранного персонажа
         this.setState({
-            selectedPerson: id,
+            selectedItem: id,
         });
     };
 
     render() {
         // Элементы разметки
         const itemList = (
-            <ItemList getData={this.swapiService.getAllPerson} onItemSelected={this.onPersonSelected}>
-                {(item) => `${item.name} ( ${item.birthYear} )`}
+            <ItemList getData={this.swapiService.getAllPerson} onItemSelected={this.onItemSelected}>
+                {(element) => `${element.name}`}
             </ItemList>
         );
 
-        const personDetails = <PersonDetails personId={this.state.selectedPerson} />
+        const itemDetails = <ItemDetails itemId={this.state.selectedItem} />
 
         return (
             <ErrorBoundary>
-                <Row leftElement={itemList} rightElement={personDetails} />
+                <Row leftElement={itemList} rightElement={itemDetails} />
             </ErrorBoundary>
         );
     };

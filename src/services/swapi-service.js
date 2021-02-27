@@ -61,6 +61,20 @@ export default class SwapiService {
         };
     }
 
+    // ================  Запрос изображений  ================
+
+    getPersonImage = ({ id }) => {
+        return `https://starwars-visualguide.com/assets/img/characters/${id}.jpg`
+    }
+
+    getStarshipImage = ({ id }) => {
+        return `https://starwars-visualguide.com/assets/img/starships/${id}.jpg`
+    }
+
+    getPlanetImage = ({ id }) => {
+        return `https://starwars-visualguide.com/assets/img/planets/${id}.jpg`
+    }
+
     // ================  Запрос персонажей  ================
 
     getAllPerson = async () => { // Получаем ответ от сервера

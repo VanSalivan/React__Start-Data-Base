@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
-import SwapiService from '../../services/swapi-service';
 
-import './person-details.scss';
+import './item-details.scss';
 
 // Компонент отображает данные персонажа с сервера  
-export default class PersonDetails extends Component {
-    SwapiService = new SwapiService();
-
+export default class ItemDetails extends Component {
     state = {
-        person: null,
+        itemIdBody: null,
+        image: null,
     };
 
     componentDidMount() { // Отрисовывает данные персонажа если они были назначенны при старте
-        this.updatePerson();
+        this.updateItemBody();
     };
 
     componentDidUpdate(prevProps) {
@@ -21,39 +19,39 @@ export default class PersonDetails extends Component {
         // Если "ID из пропса" не такой же как "ID предыдущего пропса"
         // SetState =>  componentDidUpdate => SetState =>  componentDidUpdate = БЕСКОНЕЧНОСТЬ
 
-        if (this.props.personId !== prevProps.personId) {
-            this.updatePerson();
+        if (this.props.itemId !== prevProps.itemId) {
+            this.updateItemBody();
         }
     }
 
-    updatePerson() { // функция для обновления выбранного персонажа
+    updateItemBody() { // функция для обновления выбранного персонажа
+        const { itemId, getData, getImageUrl } = this.props
 
-        // если пользователь ничего не выбрал, в personId будет null
-        if (!this.props.personId) {
-            return; // не обновляем персонажа
+        // если пользователь ничего не выбрал, в itemId будет null
+        if (!itemId) {
+            return;  // не обновляем персонажа
         }
 
         // если пользователь кого-то выбрал, делаем запрос на сервер за данными по ID из пропса
-        this.SwapiService
-            .getPerson(this.props.personId).then(person => { // когда данные будут доступны получим person
-                this.setState({
-                    person: person // присваиваем данные person стейту
-                });
+        getData(itemId).then(newItem => { // когда данные будут доступны получим newItem
+            this.setState({
+                itemIdBody: newItem, // присваиваем данные newItem стейту
+                image: getImageUrl(newItem) // возвращает картинку по заданому ID
             });
+        });
     };
 
     render() {
-
-        if (!this.state.person) { // если не выбран не один персонаж == null
+        if (!this.state.itemIdBody) { // если не выбран не один персонаж == null
             return <span>Выберите персонажа из списка</span>
         }
 
         // Деструктуризация
-        const { id, name, gender, birthYear, eyeColor } = this.state.person;
+        const { id, name, gender, birthYear, eyeColor } = this.state.itemIdBody;
 
         return (
-            <div className="person-details card" >
-                <img className="person-image" src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`} />
+            <div className="item-details card" >
+                <img className="item-image" src={this.state.image} />
 
                 <div className="card-body">
                     <h4>{name}</h4>

@@ -61,7 +61,7 @@ export default class ItemDetails extends Component {
         }
 
         // Деструктуризация
-        const { id, name, gender, birthYear, eyeColor } = this.state.itemIdBody;
+        const { name } = this.state.itemIdBody;
 
         return (
             <div className="item-details card" >

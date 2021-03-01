@@ -1,50 +1,30 @@
-import React, { Component } from 'react';
-import Spiner from '../spiner/spiner';
+import React from 'react';
+
+import { withDataHOC } from "../hoc-helpers";
 
 import './item-list.scss';
 
-// Компонент "Список" - отображение/логика списка 
-export default class ItemList extends Component {
-    state = {
-        itemList: [],
-    };
+// Часть отрисовки компонента
+const ItemList = (props) => {
+    const itemsLi = props.dataHOC.map(item => { // передача данных из props
 
-    componentDidMount() {
-        this.props.getData() // Вызываем переданные с сервера данные
-            .then((itemList) => {
-                this.setState({
-                    itemList: itemList
-                });
-            });
-    };
-
-    renderItems(arr) {
-        return arr.map(person => {
-            const label = this.props.children(person); // передача через тело элемента
-
-            return (
-                <li className="list-group-item"
-                    key={person.id}
-                    onClick={() => this.props.onItemSelected(person.id)}>
-                    {label}
-                </li>
-            );
-        });
-    };
-
-    render() {
-
-        const { itemList } = this.state // Деструктурируем в переменную
-        const itemsLi = this.renderItems(itemList); // передаем кастомной функции отображения наш массив из стейта
-
-        if (!itemList[0]) {
-            return <Spiner />
-        };
+        const label = props.children(item); // получаем снаружи функцию {(element) => `${element.name}`}
 
         return (
-            <ul className="item-list list-group" >
-                {itemsLi}
-            </ul>
+            <li className="list-group-item"
+                key={item.id}
+                onClick={() => props.onItemSelected(item.id)}>
+                {label}
+            </li>
         );
-    };
+    });
+
+    return (
+        <ul className="item-list list-group" >
+            {itemsLi}
+        </ul>
+    );
 };
+
+
+export default withDataHOC(ItemList);

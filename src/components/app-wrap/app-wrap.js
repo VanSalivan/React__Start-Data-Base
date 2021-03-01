@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Header from '../header';
 import Row from '../row';
 import ItemDetails, { Record } from '../item-details/item-details';
+import ItemList from '../item-list';
 
 import SwapiService from "../../services/swapi-service";
 
@@ -33,8 +34,8 @@ export default class App extends Component {
                 getImageUrl={this.swapiService.getStarshipImage}
                 itemId={5}>
 
-                <Record field="model" label="Modal" />
-                <Record field="length" label="Lenght" />
+                <Record field="model" label="Model" />
+                <Record field="length" label="Length" />
                 <Record field="costCredits" label="Credits" />
 
             </ItemDetails>
@@ -43,7 +44,21 @@ export default class App extends Component {
         return (
             <div className="section-outer">
                 <Header />
-                <Row leftElement={personDetails} rightElement={starshipDetails} />
+                {/* <Row leftElement={personDetails} rightElement={starshipDetails} /> */}
+
+                <Row
+                    leftElement={
+                        <ItemList getData={this.swapiService.getAllPerson} onItemSelected={() => { }}>
+                            {(element) => `${element.name}`}
+                        </ItemList>
+                    }
+
+                    rightElement={
+                        <ItemList getData={this.swapiService.getAllPlanets} onItemSelected={() => { }}>
+                            {(element) => `${element.name}`}
+                        </ItemList>
+                    }
+                />
 
             </div>
         );

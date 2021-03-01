@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 
 import './item-details.scss';
 
-const Record = ({ item, field, label }) => {
+const Record = (props) => {
+    const { item, field, label } = props;
+
     return (
         <li className="list-group-item">
             <span className="term">{label}</span>
-            <span>{field}</span>
+            <span>{item[field]}</span>
         </li>
-    )
+    );
 };
 
 export { Record };
@@ -53,6 +55,7 @@ export default class ItemDetails extends Component {
     };
 
     render() {
+
         if (!this.state.itemIdBody) { // если не выбран не один персонаж == null
             return <span>Выберите персонажа из списка</span>
         }
@@ -67,9 +70,13 @@ export default class ItemDetails extends Component {
                 <div className="card-body">
                     <h4>{name}</h4>
                     <ul className="list-group list-group-flush">
-                        {React.Children.map(this.props.children, (child) => {
-                            return child;
-                        })}
+                        {
+                            React.Children.map(this.props.children, (child) => {
+                                return React.cloneElement(child, {
+                                    item: this.state.itemIdBody
+                                });
+                            })
+                        }
                     </ul>
                 </div>
             </div>

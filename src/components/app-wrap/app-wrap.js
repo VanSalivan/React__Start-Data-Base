@@ -27,11 +27,18 @@ export default class App extends Component {
             </ItemDetails>
         );
 
-        const starshipDetails = <ItemDetails
-            getData={this.swapiService.getStarships}
-            getImageUrl={this.swapiService.getStarshipImage}
-            itemId={5}
-        />
+        const starshipDetails = (
+            <ItemDetails
+                getData={this.swapiService.getStarships}
+                getImageUrl={this.swapiService.getStarshipImage}
+                itemId={5}>
+
+                <Record field="model" label="Modal" />
+                <Record field="length" label="Lenght" />
+                <Record field="costCredits" label="Credits" />
+
+            </ItemDetails>
+        );
 
         return (
             <div className="section-outer">

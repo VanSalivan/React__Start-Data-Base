@@ -4,7 +4,7 @@ import Spiner from '../spiner/spiner';
 // HOC - Компонент высшего порядка
 // Функция которая возвращает компонент, который оборачивает основной компонент
 // Компонент-обертка - верет на себя некоторые обязанности/логику о которых не нужно заботить внутреннему компоненту
-const withDataHOC = (ComponentView) => {
+const withDataHOC = (ComponentView, getDataFunction) => {
     return class extends Component {
         state = {
             dataHOC: [],
@@ -12,10 +12,9 @@ const withDataHOC = (ComponentView) => {
 
         // Логика работы с сетью - [1]
         componentDidMount() {
-            this.props.getData().then((dataHOC) => { // Вызываем переданные с сервера данные
+            getDataFunction().then((dataHOC) => { // Вызываем переданные с сервера данные
                 this.setState({ dataHOC: dataHOC });
             })
-                .catch(this.onError);
         };
 
 

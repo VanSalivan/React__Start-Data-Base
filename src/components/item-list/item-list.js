@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { withDataHOC } from "../hoc-helpers";
-
 import './item-list.scss';
 
 // Часть отрисовки компонента
@@ -26,5 +24,4 @@ const ItemList = (props) => {
     );
 };
 
-
-export default withDataHOC(ItemList);
+export default ItemList;

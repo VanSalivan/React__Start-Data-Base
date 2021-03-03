@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 
 import Header from '../header';
 import Row from '../row';
-import ItemDetails, { Record } from '../item-details/item-details';
 
 import SwapiService from "../../services/swapi-service";
+import { SwapiServiceProvider } from '../swapi-service-context';
 
-import './app-wrap.scss';
 import { PersonList, PlanetList, StarshipList } from '../sw-components/item-lists';
 import { PersonDetails, PlanetDetails, StarshipDetails } from '../sw-components/details'
+
+import './app-wrap.scss';
 
 
 // Компонент "Обертка приложения" 
@@ -18,16 +19,21 @@ export default class App extends Component {
     render() {
 
         return (
-            <div className="section-outer">
-                <Header />
+            <SwapiServiceProvider value={this.swapiService}>
+                <div className="section-outer">
+                    <Header />
 
-                <PersonDetails itemId={11} />
+                    <PersonDetails itemId={11} />
 
-                <PersonList>
-                    {(element) => `${element.name}`}
-                </PersonList>
+                    <PlanetDetails itemId={11} />
+                    <StarshipDetails itemId={11} />
 
-            </div>
+                    {/* <PersonList>
+                        {(element) => `${element.name}`}
+                    </PersonList> */}
+
+                </div>
+            </SwapiServiceProvider>
         );
     }
 };

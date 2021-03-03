@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import './item-details.scss';
 
+// Компонент отображает данные персонажа с сервера - поля в теле
 const Record = (props) => {
     const { item, field, label } = props;
 
@@ -15,7 +16,7 @@ const Record = (props) => {
 
 export { Record };
 
-// Компонент отображает данные персонажа с сервера  
+// Компонент отображает данные персонажа с сервера - тело 
 export default class ItemDetails extends Component {
     state = {
         itemIdBody: null,
@@ -55,20 +56,17 @@ export default class ItemDetails extends Component {
     };
 
     render() {
-
-        if (!this.state.itemIdBody) { // если не выбран не один персонаж == null
+        // если не выбран не один персонаж == null
+        if (!this.state.itemIdBody) {
             return <span>Выберите персонажа из списка</span>
         }
-
-        // Деструктуризация
-        const { name } = this.state.itemIdBody;
 
         return (
             <div className="item-details card" >
                 <img className="item-image" src={this.state.image} />
 
                 <div className="card-body">
-                    <h4>{name}</h4>
+                    <h4>{this.state.itemIdBody.name}</h4>
                     <ul className="list-group list-group-flush">
                         {
                             React.Children.map(this.props.children, (child) => {

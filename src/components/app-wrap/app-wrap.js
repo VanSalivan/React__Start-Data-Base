@@ -24,7 +24,7 @@ export default class App extends Component {
             <SwapiServiceProvider value={this.state.swapiService}>
                 <div className="section-outer">
                     <Header />
-                    <RandomPlanet />
+                    <RandomPlanet updateInterval={5000} />
 
                     <PlanetPage />
                     <PeoplePage />

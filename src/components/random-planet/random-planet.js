@@ -14,10 +14,14 @@ export default class RandomPlanet extends Component {
         error: false // флаг ошибки
     };
 
+    static defaultProps = { // props по-умолчанию
+        updateInterval: 10000,
+    };
+
     // отправляет запросы/срабатывает после добавления элементов в DOM
     componentDidMount() {// в момент создания компонента отправляем запрос на сервер
         this.updatePlanet(); // получаемый ответ отображаем на странице через смену state
-        setInterval(this.updatePlanet, 10000);
+        setInterval(this.updatePlanet, this.props.updateInterval);
     }
 
     onError = (err) => {

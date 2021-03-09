@@ -1,4 +1,3 @@
-import React from 'react';
 import { withDataHOC } from "../hoc-helpers";
 import ItemList from '../item-list';
 import SwapiService from "../../services/swapi-service";

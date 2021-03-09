@@ -62,7 +62,7 @@ export default class ItemDetails extends Component {
 
         return (
             <div className="item-details card" >
-                <img className="item-image" src={this.state.image} />
+                <img className="item-image" src={this.state.image} alt="картинка элемента списка" />
 
                 <div className="card-body">
                     <h4>{this.state.itemIdBody.name}</h4>

@@ -68,7 +68,7 @@ const PlanetViev = ({ planet }) => {
         <React.Fragment>
             <img className="random-planet-image" src={`https://starwars-visualguide.com/assets/img/planets/${planet.id}.jpg`} alt="planet" />
             <div className="card-body">
-                <h4>{planet.planetName}</h4>
+                <h4>{planet.name}</h4>
                 <ul className="list-group list-group-flush">
                     <li className="list-group-item">
                         <span className="term">Population</span>

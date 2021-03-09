@@ -102,12 +102,12 @@
 //* Внутри класса можно использовать метод static
 // static defaultProps = { ключ : значение }
 
-//? 
-//* - 
-//* - 
-//* - 
-
-//? 
-//* - 
-//* - 
-//* - 
+//? 94. Библиотеки prop-types
+//* - Библиотека props-types = набор стандартных функций валидаторов
+// ItemList.propTypes = {
+//   onItemSelected: PropTypes.func.isRequired,
+//   data: PropTypes.arrayOf(PropTypes.object),
+//   children: PropTypes.func.isRequired
+//};
+//* - Есть и другие библиотеки, с дополнительными валидаторами
+// Например: airnbn-prop-types

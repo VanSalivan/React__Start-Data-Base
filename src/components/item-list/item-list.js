@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './item-list.scss';
 
@@ -22,6 +23,13 @@ const ItemList = (props) => {
             {itemsLi}
         </ul>
     );
+};
+
+// Описание/валидация получаемых свойст - props
+ItemList.propTypes = {
+    onItemSelected: PropTypes.func.isRequired,
+    data: PropTypes.arrayOf(PropTypes.object),
+    children: PropTypes.func.isRequired
 };
 
 export default ItemList;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './row.scss';
 
@@ -14,6 +15,11 @@ const Row = ({ leftElement, rightElement }) => { // Деструктурируе
             </div>
         </div>
     )
+};
+
+Row.propTypes = {
+    leftElement: PropTypes.node,
+    rightElement: PropTypes.node,
 };
 
 export default Row;

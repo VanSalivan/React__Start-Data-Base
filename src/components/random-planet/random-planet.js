@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SwapiService from "../../services/swapi-service";
 import Spiner from '../spiner/spiner';
 import ErrorIndicator from "../error-indicator/error-indicator";
+import PropTypes from 'prop-types';
 
 import './random-planet.scss';
 
@@ -16,6 +17,10 @@ export default class RandomPlanet extends Component {
 
     static defaultProps = { // props по-умолчанию
         updateInterval: 10000,
+    };
+
+    static propTypes = {
+        updateInterval: PropTypes.number
     };
 
     // отправляет запросы/срабатывает после добавления элементов в DOM

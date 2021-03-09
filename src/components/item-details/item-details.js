@@ -29,7 +29,11 @@ export default class ItemDetails extends Component {
 
     // Если будем использовать смену props || state необходимо условие проверки чтобы не создать петлю
     componentDidUpdate(prevProps) {
-        if (this.props.itemId !== prevProps.itemId) {    // Если "ID из пропса" не такой же как "ID предыдущего пропса"
+        //Обновляем - если "ID из пропса" не такой же как "ID предыдущего пропса" 
+        //или
+        //Полученная функция получения е такая же как "полученные данные предыдущего пропса" 
+
+        if (this.props.itemId !== prevProps.itemId || this.props.getData !== prevProps.getData) {
             this.updateItemBody(); // SetState =>  componentDidUpdate => SetState =>  componentDidUpdate = БЕСКОНЕЧНОСТЬ
         }
     }

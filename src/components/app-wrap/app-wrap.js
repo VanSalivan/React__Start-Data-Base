@@ -14,12 +14,15 @@ import './app-wrap.scss';
 
 // Компонент "Обертка приложения" 
 export default class App extends Component {
-    swapiService = new SwapiService();
+    state = {
+        swapiService: new SwapiService(), // источник данных как состояние - удобно для смены источника или тестов
+        showRandomPlanet: true,
+    }
 
     render() {
 
         return (
-            <SwapiServiceProvider value={this.swapiService}>
+            <SwapiServiceProvider value={this.state.swapiService}>
                 <div className="section-outer">
                     <Header />
 

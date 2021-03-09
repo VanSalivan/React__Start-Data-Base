@@ -1,26 +1,21 @@
 import React from 'react';
 import ItemDetails, { Record } from '../item-details/item-details';
-import { SwapiServiceConsumer } from '../swapi-service-context';
+import { withSwapiService } from "../hoc-helpers/";
 
-const StarshipDetails = ({ itemId }) => {
+const StarshipDetails = ({ itemId, swapiService }) => {
     return (
-        <SwapiServiceConsumer>
-            {(swapiService) => {
-                return (
-                    <ItemDetails
-                        getData={swapiService.getStarships}
-                        getImageUrl={swapiService.getStarshipImage}
-                        itemId={itemId}>
+        <ItemDetails
+            getData={swapiService.getStarships}
+            getImageUrl={swapiService.getStarshipImage}
+            itemId={itemId}>
 
-                        <Record field="model" label="Model" />
-                        <Record field="length" label="Length" />
-                        <Record field="costCredits" label="Credits" />
+            <Record field="model" label="Model" />
+            <Record field="length" label="Length" />
+            <Record field="costCredits" label="Credits" />
 
-                    </ItemDetails>
-                )
-            }}
-        </SwapiServiceConsumer>
+        </ItemDetails>
+
     )
 };
 
-export default StarshipDetails;
+export default withSwapiService(StarshipDetails);

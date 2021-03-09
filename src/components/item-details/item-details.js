@@ -27,22 +27,17 @@ export default class ItemDetails extends Component {
         this.updateItemBody();
     };
 
+    // Если будем использовать смену props || state необходимо условие проверки чтобы не создать петлю
     componentDidUpdate(prevProps) {
-
-        // Если будем использовать смену props || state необходимо условие проверки чтобы не создать петлю
-        // Если "ID из пропса" не такой же как "ID предыдущего пропса"
-        // SetState =>  componentDidUpdate => SetState =>  componentDidUpdate = БЕСКОНЕЧНОСТЬ
-
-        if (this.props.itemId !== prevProps.itemId) {
-            this.updateItemBody();
+        if (this.props.itemId !== prevProps.itemId) {    // Если "ID из пропса" не такой же как "ID предыдущего пропса"
+            this.updateItemBody(); // SetState =>  componentDidUpdate => SetState =>  componentDidUpdate = БЕСКОНЕЧНОСТЬ
         }
     }
 
     updateItemBody() { // функция для обновления выбранного персонажа
         const { itemId, getData, getImageUrl } = this.props
 
-        // если пользователь ничего не выбрал, в itemId будет null
-        if (!itemId) {
+        if (!itemId) {  // если пользователь ничего не выбрал, в itemId будет null
             return;  // не обновляем персонажа
         }
 

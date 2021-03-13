@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Header from '../header';
 import { PeoplePage } from '../pages'
@@ -22,14 +23,16 @@ export default class App extends Component {
 
         return (
             <SwapiServiceProvider value={this.state.swapiService}>
-                <div className="section-outer">
-                    <Header />
-                    <RandomPlanet updateInterval={5000} />
+                <Router>
+                    <div className="section-outer">
+                        <Header />
+                        <RandomPlanet updateInterval={5000} />
 
-                    <PlanetPage />
-                    <PeoplePage />
-                    <StarshipPage />
-                </div>
+                        <Route path="/people" component={PeoplePage} />
+                        <Route path="/planet" component={PlanetPage} />
+                        <Route path="/starship" component={StarshipPage} />
+                    </div>
+                </Router>
             </SwapiServiceProvider>
         );
     }

@@ -10,7 +10,9 @@ import RandomPlanet from '../random-planet'
 import SwapiService from "../../services/swapi-service";
 import { SwapiServiceProvider } from '../swapi-service-context';
 
+import './bootstrap.min.css';
 import './app-wrap.scss';
+import { StarshipDetails } from '../sw-components';
 
 
 // Компонент "Обертка приложения" 
@@ -30,7 +32,11 @@ export default class App extends Component {
 
                         <Route path="/people" component={PeoplePage} />
                         <Route path="/planet" component={PlanetPage} />
-                        <Route path="/starship" component={StarshipPage} />
+
+                        <Route path="/starship" exact component={StarshipPage} />
+                        <Route path="/starship/:id" render={
+                            ({ match }) => <StarshipDetails itemId={match.params.id} />
+                        } />
                     </div>
                 </Router>
             </SwapiServiceProvider>

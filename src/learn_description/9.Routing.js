@@ -28,6 +28,16 @@
 //* - ":id" может быть любой строкой, которая идет после /people/
 //* - Если не установить "exact", то путь /people будет срабатывать всегда, когда срабатывает people/:id
 
+//? 110. withRouter
+//* - withRouter - Компонент высшего порядка, он передается компоненту обьекты react router:
+//* - { match, location, history }
+// - <Button onClick={ () => history.push('/new/path')}>ClickMe</Button>
+
+//? 
+//* - 
+//* - 
+//* - 
+
 //? 
 //* - 
 //* - 

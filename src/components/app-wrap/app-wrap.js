@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 
 import Header from '../header';
 import { PeoplePage } from '../pages'
@@ -29,14 +29,16 @@ export default class App extends Component {
                     <div className="section-outer">
                         <Header />
                         <RandomPlanet updateInterval={5000} />
-
-                        <Route path="/people/:id?" component={PeoplePage} />
-                        <Route path="/planet" component={PlanetPage} />
-
-                        <Route path="/starship" exact component={StarshipPage} />
-                        <Route path="/starship/:id" render={
-                            ({ match }) => <StarshipDetails itemId={match.params.id} />
-                        } />
+                        
+                        <Switch>
+                            <Route path="/people/:id?" component={PeoplePage} />
+                            <Route path="/planet" component={PlanetPage} />
+                            <Route path="/starship" exact component={StarshipPage} />
+                            <Route path="/starship/:id" render={
+                                ({ match }) => <StarshipDetails itemId={match.params.id} />
+                            } />
+                            <Route render={() => <h2>404 Page not found</h2>} />
+                        </Switch>
                     </div>
                 </Router>
             </SwapiServiceProvider>

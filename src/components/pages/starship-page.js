@@ -4,7 +4,7 @@ import { StarshipList } from '../sw-components';
 
 const StarshipPage = (props) => {
     return (
-        <StarshipList onItemSelected={(itemId) => { props.history.push(`/starship/${itemId}`) }}>
+        <StarshipList onItemSelected={(itemId) => props.history.push(itemId)}>
             {(element) => `${element.name} `}
         </StarshipList>
     )

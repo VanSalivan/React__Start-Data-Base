@@ -7,9 +7,9 @@ const Header = () => {
         <header className="header">
             <div className="header__logo">Star DB</div>
             <ul className="header__list">
-                <li className="header__list-item"><Link to="/people">People</Link></li>
-                <li className="header__list-item"><Link to="/planet">Planets</Link></li>
-                <li className="header__list-item"><Link to="/starship">Starships</Link></li>
+                <li className="header__list-item"><Link to="/people/">People</Link></li>
+                <li className="header__list-item"><Link to="/planet/">Planets</Link></li>
+                <li className="header__list-item"><Link to="/starship/">Starships</Link></li>
             </ul>
         </header>
     );

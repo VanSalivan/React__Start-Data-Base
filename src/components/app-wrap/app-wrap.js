@@ -30,7 +30,7 @@ export default class App extends Component {
                         <Header />
                         <RandomPlanet updateInterval={5000} />
 
-                        <Route path="/people" component={PeoplePage} />
+                        <Route path="/people/:id?" component={PeoplePage} />
                         <Route path="/planet" component={PlanetPage} />
 
                         <Route path="/starship" exact component={StarshipPage} />

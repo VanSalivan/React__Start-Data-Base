@@ -29,7 +29,7 @@ export default class App extends Component {
                     <div className="section-outer">
                         <Header />
                         <RandomPlanet updateInterval={5000} />
-                        
+
                         <Switch>
                             <Route path="/people/:id?" component={PeoplePage} />
                             <Route path="/planet" component={PlanetPage} />
@@ -37,7 +37,8 @@ export default class App extends Component {
                             <Route path="/starship/:id" render={
                                 ({ match }) => <StarshipDetails itemId={match.params.id} />
                             } />
-                            <Route render={() => <h2>404 Page not found</h2>} />
+                            <Redirect to='./planet' />
+                            {/* <Route render={() => <h2>404 Page not found</h2>} /> */}
                         </Switch>
                     </div>
                 </Router>
